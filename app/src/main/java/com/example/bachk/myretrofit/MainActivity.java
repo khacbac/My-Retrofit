@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
         txtShow = findViewById(R.id.txtShow);
         final StringBuilder strBD = new StringBuilder();
-        retrofit2.Call<List<Data>> getAllData = ApiUtils.getApiServer().getAllData("wp-content/themes/manga/list-manga-front.js?nocache=1509752235");
+        retrofit2.Call<List<Data>> getAllData = ApiUtils.getApiServer().getAllData("public/userLogin?user_name=benzamil&password=123456&udid=123456");
         getAllData.enqueue(new Callback<List<Data>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Data>> call, Response<List<Data>> response) {
                 List<Data> dataList = response.body();
                 for (int i = 0; i < dataList.size(); i++) {
-                    strBD.append(dataList.get(i).getLink()).append("\n");
+                    strBD.append(dataList.get(i).getUserName()).append("\n");
                 }
                 txtShow.setText(strBD.toString());
             }

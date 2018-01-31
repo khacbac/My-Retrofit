@@ -8,26 +8,70 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Data {
-    @SerializedName("label")
+    @SerializedName("id")
     @Expose
-    private String label;
-    @SerializedName("link")
+    private Integer id;
+    @SerializedName("user_name")
     @Expose
-    private String link;
+    private String userName;
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("email_address")
+    @Expose
+    private String emailAddress;
+    @SerializedName("udid")
+    @Expose
+    private String udid;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
 
-    public String getLabel() {
-        return label;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getLink() {
-        return link;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getUdid() {
+        return udid;
+    }
+
+    public void setUdid(String udid) {
+        this.udid = udid;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }
