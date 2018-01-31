@@ -17,9 +17,6 @@ import retrofit2.http.Url;
 
 public interface ApiServer {
     @GET
-    Call<ResponseBody> getAllDetailData(@Url String url);
-
-    @GET
     Call<List<Data>> getAllData(@Url String url);
 
     Retrofit retrofit = new Retrofit.Builder()
