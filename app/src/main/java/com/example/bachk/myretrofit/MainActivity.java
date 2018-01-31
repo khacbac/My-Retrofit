@@ -25,19 +25,24 @@ public class MainActivity extends AppCompatActivity {
 
         txtShow = findViewById(R.id.txtShow);
         final StringBuilder strBD = new StringBuilder();
-        retrofit2.Call<List<Data>> getAllData = ApiUtils.getApiServer().getAllData("public/userLogin?user_name=benzamil&password=123456&udid=123456");
-        getAllData.enqueue(new Callback<List<Data>>() {
+        retrofit2.Call<ResponseBody> getAllData = ApiUtils.getApiServer().getAllData("public/userLogin?user_name=benzamil&password=123456&udid=123456");
+        getAllData.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(retrofit2.Call<List<Data>> call, Response<List<Data>> response) {
-                List<Data> dataList = response.body();
-                for (int i = 0; i < dataList.size(); i++) {
-                    strBD.append(dataList.get(i).getUserName()).append("\n");
+            public void onResponse(retrofit2.Call<ResponseBody> call, Response<ResponseBody> response) {
+//                List<Data> dataList = response.body();
+//                for (int i = 0; i < dataList.size(); i++) {
+//                    strBD.append(dataList.get(i).getUserName()).append("\n");
+//                }
+//                txtShow.setText(strBD.toString());
+                try {
+                    Log.d(TAG, "onResponse: data = " + response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                txtShow.setText(strBD.toString());
             }
 
             @Override
-            public void onFailure(retrofit2.Call<List<Data>> call, Throwable t) {
+            public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
 
             }
         });
