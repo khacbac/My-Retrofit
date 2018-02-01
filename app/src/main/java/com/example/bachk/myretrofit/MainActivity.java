@@ -6,6 +6,8 @@ import android.telecom.Call;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.bachk.myretrofit.octuan.DataList;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -25,25 +27,19 @@ public class MainActivity extends AppCompatActivity {
 
         txtShow = findViewById(R.id.txtShow);
         final StringBuilder strBD = new StringBuilder();
-        retrofit2.Call<ResponseBody> getAllData = ApiUtils.getApiServer().getAllData("public/userLogin?user_name=benzamil&password=123456&udid=123456");
-        getAllData.enqueue(new Callback<ResponseBody>() {
+        retrofit2.Call<List<DataList>> getAllData = ApiUtils.getApiServer().getAllData("public/userLogin?user_name=benzamil&password=123456&udid=123456");
+        getAllData.enqueue(new Callback<List<DataList>>() {
             @Override
-            public void onResponse(retrofit2.Call<ResponseBody> call, Response<ResponseBody> response) {
-//                List<Data> dataList = response.body();
-//                for (int i = 0; i < dataList.size(); i++) {
-//                    strBD.append(dataList.get(i).getUserName()).append("\n");
-//                }
-//                txtShow.setText(strBD.toString());
-                try {
-                    Log.d(TAG, "onResponse: data = " + response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
+            public void onResponse(retrofit2.Call<List<DataList>> call, Response<List<DataList>> response) {
+                List<DataList> exampleList = response.body();
+                for (DataList dataList : exampleList) {
+                    Log.d(TAG, "onResponse: meta = " + dataList.getMeta().toString());
+                    Log.d(TAG, "onResponse: response = " + dataList.getResponse().toString());
                 }
             }
 
             @Override
-            public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
-
+            public void onFailure(retrofit2.Call<List<DataList>> call, Throwable t) {
             }
         });
     }

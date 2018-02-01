@@ -2,6 +2,8 @@ package com.example.bachk.myretrofit;
 
 import android.provider.SyncStateContract;
 
+import com.example.bachk.myretrofit.octuan.DataList;
+
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -16,11 +18,11 @@ import retrofit2.http.Url;
  */
 
 public interface ApiServer {
-//    @GET
-//    Call<List<Data>> getAllData(@Url String url);
-
     @GET
-    Call<ResponseBody> getAllData(@Url String url);
+    Call<List<DataList>> getAllData(@Url String url);
+
+//    @GET
+//    Call<ResponseBody> getAllData(@Url String url);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Constants.URL_HOME)
